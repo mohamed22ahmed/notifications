@@ -29,7 +29,7 @@ class InvoicePaid extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -44,6 +44,13 @@ class InvoicePaid extends Notification
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
+    }
+
+    public function toDatabase(){
+        return [
+            'amount' => 230,
+            'action' => 'pay now....'
+        ];
     }
 
     /**
